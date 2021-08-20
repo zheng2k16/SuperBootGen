@@ -5,3 +5,6 @@
 
 - [x] mybatis plus generator optional
 - [x] pom.xml automatically done
+
+**TODO**
+yes as u can see, cli is needed
