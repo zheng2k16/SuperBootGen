@@ -1,2 +1,2 @@
 # SuperBootGen
-serial tools 佛如、
+serial tools for idea with springboot
