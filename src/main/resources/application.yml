@@ -1,0 +1,107 @@
+spring:
+  main:
+    web-application-type: none
+# user settings -------------------------------------------------
+super-boot-gen-config:
+  # like workspace
+  workSpaceDir: D:\path_xxx\dir_xxx
+
+  # globe setting
+  # 强制创建单体项目
+  # 单体项目MybatisPlus代码生成器支持
+  # 聚合项目是否强制删除src目录
+  # windows下 idea64 命令自动打开生成的项目
+  forceToBeSingleProject: false
+  ifSingleMybatisPlusGenSupport: true
+  ifAggForceToIgnoreParentSrcFolderSupport: true
+  autoOpenAfterGenWithWinAndIdea64: true
+  # Parent pom necessary
+  artifactId: xxx-xxx
+  groupId: &groupId com.ssx #don't contain illegal char like - * +
+  version: &version 1.0-SNAPSHOT
+  # Parent pom necessary
+  springBootVersion: 2.5.2
+  description: Powered By Chain-Gen
+  javaVersion: 1.8
+
+  bootDependencyList:
+    - spring-boot-starter-web
+    - spring-boot-starter-test
+    - spring-boot-starter-security
+    #- spring-boot-starter-validation
+    #- spring-boot-devtools
+    #- spring-boot-configuration-processor
+  mavenBuildPluginSupport: true
+
+  # if agg && ifAggForceToIgnoreParentSrcFolderSupport ignore
+  mainFolderSupport: true
+  applicationClassSupport: true
+  testClassSupport: true
+
+  settingFileList: [
+    application.yml,
+    #application-dev.yml,
+    #application.properties,
+  ]
+  resourcesFolderList: [
+    #resources,
+    templates,
+    public,
+    static,
+  ]
+
+  # Agg project Settings
+  # artifactId
+  # |-subArtifactId_1
+  #    |-src
+  #    |-pom.xml
+  # |-subArtifactId_n
+  #    |-src
+  #    |-pom.xml
+  # |-src[?]
+  # |-pom.xml
+
+  # if agg necessary
+  subModulesArtifactIdList:
+    - {
+      subModuleIgnoredSupport: true, # mean this object will be ignored
+      artifactId: dome,
+      groupId: *groupId, #don't contain illegal char like - * +
+      version: *version,
+      description: full settings display,
+      mavenBuildPluginSupport: true,
+      resourcesFolderList: [
+        #resources,
+        templates,
+        public,
+        static,
+      ],
+      settingFileList: [
+          application.properties,
+          application.yml,
+          application-dev.yml,
+      ],
+      # 0 - OFF; 1 - MANAGE_BY_SELF; 2 - MANAGE_BY_PARENT;
+      mybatisPlusDependencyLocation: 2,
+    } # ------- this object will be ignored -------
+    - {
+      subModuleIgnoredSupport: false,
+      artifactId: sub-a,
+      groupId: com.ssx.suba, #don't contain illegal char like - * +
+      version: *version,
+      description: ,
+      mavenBuildPluginSupport: true,
+      resourcesFolderList: [
+          #resources,
+          templates,
+          public,
+          static,
+      ],
+      settingFileList: [
+          #application.properties,
+          application.yml,
+          #application-dev.yml,
+      ],
+      # 0 - OFF; 1 - MANAGE_BY_SELF; 2 - MANAGE_BY_PARENT;
+      mybatisPlusDependencyLocation: 1,
+    }
