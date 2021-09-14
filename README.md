@@ -7,4 +7,4 @@
 - [x] pom.xml automatically done
 
 **TODO**
-yes as u can see, cli is needed
+yes as u can see, cli is needed, standalone is needed
